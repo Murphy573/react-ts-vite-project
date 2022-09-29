@@ -1,42 +1,25 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
+import { Layout, ConfigProvider } from 'antd'
+import React from 'react'
+
+const { Header, Footer, Sider, Content } = Layout
 
 const title = import.meta.env.VITE_APP_TITLE
 // eslint-disable-next-line no-console
 console.log(import.meta)
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log(2)
-  }, [count])
-
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React + 自定义title：{title}</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <ConfigProvider componentSize="small">
+      <Layout style={{ height: '100%', width: '100%' }}>
+        <Sider>Sider</Sider>
+        <Layout>
+          <Header>title: {title}</Header>
+          <Content>Content</Content>
+          <Footer>Footer</Footer>
+        </Layout>
+      </Layout>
+    </ConfigProvider>
   )
 }
 

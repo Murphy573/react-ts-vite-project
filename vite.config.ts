@@ -1,15 +1,18 @@
+// @ts-nocheck
+
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import ViteEslint from 'vite-plugin-eslint'
+import path from 'path'
 
-// const resolve = (dir) => path.join(__dirname, dir);
+const resolve = (dir) => path.join(__dirname, dir)
 
 // https://vitejs.dev/config/
 export default defineConfig({
   base: './',
   resolve: {
     alias: {
-      '@': '/'
+      '@': resolve('src')
     }
   },
 

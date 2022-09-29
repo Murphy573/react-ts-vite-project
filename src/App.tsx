@@ -1,6 +1,6 @@
-import './App.css'
-import { Layout, ConfigProvider } from 'antd'
 import React from 'react'
+import { Layout, ConfigProvider } from 'antd'
+import './App.css'
 
 const { Header, Footer, Sider, Content } = Layout
 

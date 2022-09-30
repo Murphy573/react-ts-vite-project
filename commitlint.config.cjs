@@ -1,4 +1,7 @@
 /**
+ *
+ * commitlint主页：https://commitlint.js.org/#/
+ *
  * 提交示例
  *
  * feat(yc318?): commit msg

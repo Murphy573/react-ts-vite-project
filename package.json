@@ -2,11 +2,15 @@
   "name": "react-ts-vite-project",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && npm run lint:js && npm run lint:style && vite build",
     "preview": "vite preview",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./"
+    "lint:js": "eslint . --ext .js,.ts,.jsx,.tsx --fix",
+    "lint:style": "stylelint \"./**/*.{css,less,vue,html}\" --fix",
+    "format": "prettier --write \"./**/*.{html,js,ts,jsx,tsx,json,md}\"",
+    "prepare": "husky install"
   },
   "dependencies": {
     "antd": "^4.23.3",
@@ -14,6 +18,8 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.37.0",
@@ -23,10 +29,28 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.8",
+    "husky": "^8.0.1",
     "less": "^4.1.3",
+    "lint-staged": "^13.0.3",
+    "postcss": "^8.4.16",
+    "postcss-html": "^1.5.0",
+    "postcss-less": "^6.0.0",
     "prettier": "^2.7.1",
+    "stylelint": "^14.13.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-recommended-less": "^1.0.4",
+    "stylelint-config-standard": "^28.0.0",
+    "stylelint-less": "^1.0.6",
+    "stylelint-order": "^5.0.0",
     "typescript": "^4.6.4",
     "vite": "^3.1.0",
     "vite-plugin-eslint": "^1.8.1"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,vue}": [
+      "npm run lint:js",
+      "npm run format",
+      "npm run lint:style"
+    ]
   }
 }

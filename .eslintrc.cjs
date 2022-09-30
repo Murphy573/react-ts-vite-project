@@ -1,5 +1,3 @@
-/*eslint no-undef: "off"*/
-
 module.exports = {
   env: {
     browser: true,
@@ -54,5 +52,14 @@ module.exports = {
       }
     ],
     'no-constant-condition': ['error', { checkLoops: false }]
+  },
+  /**
+   * 解决打包时控制台警告：React version not specified in eslint-plugin-react settings
+   * https://stackoverflow.com/questions/72780296/warning-react-version-not-specified-in-eslint-plugin-react-settings-while-run
+   */
+  settings: {
+    react: {
+      version: 'detect'
+    }
   }
 }

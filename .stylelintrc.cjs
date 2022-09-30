@@ -1,3 +1,4 @@
+// stylelint主页： https://stylelint.io/
 module.exports = {
   extends: [
     'stylelint-config-standard',

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Layout, ConfigProvider } from 'antd'
 import './App.css'
+import AppStyle from './styles/app.module.less'
 
 const { Header, Footer, Sider, Content } = Layout
 
@@ -11,7 +12,7 @@ console.log(import.meta)
 const App: React.FC = () => {
   return (
     <ConfigProvider componentSize="small">
-      <Layout style={{ height: '100%', width: '100%' }}>
+      <Layout className={AppStyle.app}>
         <Sider>Sider</Sider>
         <Layout>
           <Header>title: {title}</Header>

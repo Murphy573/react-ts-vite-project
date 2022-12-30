@@ -1,9 +1,7 @@
-// @ts-nocheck
-
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import ViteEslint from 'vite-plugin-eslint'
-import path from 'path'
+import path from 'node:path'
 
 const resolve = (dir) => path.join(__dirname, dir)
 

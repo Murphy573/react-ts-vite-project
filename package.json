@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && npm run lint:js && npm run lint:style && vite build",
+    "build": "tsc && npm run lint:js && npm run lint:style && vite build --mode production",
     "preview": "vite preview",
     "lint:js": "eslint . --ext .js,.ts,.jsx,.tsx --fix",
     "lint:style": "stylelint \"./**/*.{css,less,vue,html}\" --fix",
@@ -25,6 +25,7 @@
     "@typescript-eslint/eslint-plugin": "^5.37.0",
     "@typescript-eslint/parser": "^5.37.0",
     "@vitejs/plugin-react": "^2.1.0",
+    "dotenv": "^16.0.3",
     "eslint": "^8.23.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",

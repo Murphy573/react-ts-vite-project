@@ -9,13 +9,16 @@ const title = import.meta.env.VITE_APP_TITLE
 // eslint-disable-next-line no-console
 console.log(import.meta)
 
+/* eslint-disable */
+const a: RTVP.Normal = { a: '' }
+
 const App: React.FC = () => {
   return (
     <ConfigProvider componentSize="small">
       <Layout className={AppStyle.app}>
         <Sider>Sider</Sider>
         <Layout>
-          <Header>title: {title}</Header>
+          <Header style={{ color: '#fff' }}>title: {title}</Header>
           <Content>Content</Content>
           <Footer>Footer</Footer>
         </Layout>

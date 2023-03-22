@@ -10,7 +10,7 @@ import { RouterProvider } from 'react-router-dom'
 
 const App: React.FC = () => {
   return (
-    <ConfigProvider componentSize="small">
+    <ConfigProvider componentSize="middle">
       <div className={AppStyle.app}>
         <RouterProvider router={RootRouter} />
       </div>

@@ -2,12 +2,15 @@
 
 html,
 body,
-#root,
-*,
-*::before,
-*::after {
+#root {
   padding: 0;
   margin: 0;
   height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }

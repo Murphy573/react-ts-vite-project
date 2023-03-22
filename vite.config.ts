@@ -4,7 +4,7 @@ import ViteEslint from 'vite-plugin-eslint'
 import path from 'node:path'
 import { getLocalEnvConfig } from './built/utils'
 
-const resolve = (dir) => path.join(__dirname, dir)
+const resolve = (dir: string) => path.join(__dirname, dir)
 
 // https://vitejs.dev/config/
 export default defineConfig((configEnv: ConfigEnv) => {
@@ -20,7 +20,8 @@ export default defineConfig((configEnv: ConfigEnv) => {
     resolve: {
       alias: {
         '@': resolve('src')
-      }
+      },
+      extensions: ['.js', '.jsx', '.ts', '.tsx']
     },
 
     esbuild: {

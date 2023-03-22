@@ -13,14 +13,21 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "noEmit": true,
     "jsx": "react-jsx",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "*.ts": ["*"],
+      "*.tsx": ["*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "built/**/*.ts"],
-  "exclude": ["node_modules", "**/node_modules/*"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": [
+    "src/**/*.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "vite.config.ts",
+    "built/**/*.ts"
+  ],
+  "exclude": ["node_modules", "**/node_modules/*"]
 }

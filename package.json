@@ -5,12 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && npm run lint:js && npm run lint:style && vite build --mode production",
+    "build": "run-s tscheck lint:js lint:style build:only",
     "preview": "vite preview",
     "lint:js": "eslint . --ext .js,.ts,.jsx,.tsx --fix",
     "lint:style": "stylelint \"./**/*.{css,less,vue,html}\" --fix",
     "format": "prettier --write \"./**/*.{html,js,ts,jsx,tsx,json,md}\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "tscheck": "tsc",
+    "build:only": "vite build --mode production"
   },
   "dependencies": {
     "antd": "^4.23.3",
@@ -34,6 +36,7 @@
     "husky": "^8.0.1",
     "less": "^4.1.3",
     "lint-staged": "^13.0.3",
+    "npm-run-all": "^4.1.5",
     "postcss": "^8.4.16",
     "postcss-html": "^1.5.0",
     "postcss-less": "^6.0.0",

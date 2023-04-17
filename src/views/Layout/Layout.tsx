@@ -24,7 +24,14 @@ const Layout: React.FC = () => {
           <Content>
             <Outlet />
           </Content>
-          <Footer>Footer</Footer>
+          <Footer
+            style={{
+              textAlign: 'center',
+              color: 'rgb(110 109 109)',
+              padding: '12px 12px'
+            }}>
+            Footer
+          </Footer>
         </AntdLayout>
       </AntdLayout>
     </ConfigProvider>

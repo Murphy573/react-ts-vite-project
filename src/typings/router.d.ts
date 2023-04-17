@@ -1,7 +1,7 @@
 declare namespace MyRouter {
   type RouteObject = import('react-router-dom').RouteObject
 
-  type RouteObj = RouteObject & {
+  type RouteMixedObject = RouteObject & {
     meta?: {
       /* 是否是白名单 */
       isWhiteList?: boolean

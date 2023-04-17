@@ -2,9 +2,9 @@ import React, { Suspense } from 'react'
 import { Spin } from 'antd'
 
 /**
- * @description 路由懒加载
+ * 路由组件懒加载
  * @param {Element} Component 需要访问的组件
- * @returns element
+ * @returns {React.ReactNode} element
  */
 const LazyLoad = (
   Component: React.LazyExoticComponent<any>

@@ -4,16 +4,19 @@ import { createBrowserRouter, Navigate } from 'react-router-dom'
 import Layout from '@/views/Layout/Layout'
 
 // ! 导入所有router并存储到AllRouters
-export const AllRouters: MyRouter.RouteObj[] = []
+export const AllRouters: MyRouter.RouteMixedObject[] = []
 const metaRouters = import.meta.glob('./modules/*.tsx', { eager: true })
 Object.keys(metaRouters).forEach((item) => {
-  const routesMapper = metaRouters[item] as Record<string, MyRouter.RouteObj[]>
+  const routesMapper = metaRouters[item] as Record<
+    string,
+    MyRouter.RouteMixedObject[]
+  >
   Object.keys(routesMapper).forEach((key) => {
     AllRouters.push(...routesMapper[key])
   })
 })
 
-const routeConfig: MyRouter.RouteObj[] = [
+const routeConfig: MyRouter.RouteMixedObject[] = [
   {
     path: '/',
     element: <Navigate to="/login" />

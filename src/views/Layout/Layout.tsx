@@ -1,8 +1,16 @@
 import React, { useEffect } from 'react'
 import { Layout as AntdLayout, ConfigProvider } from 'antd'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
+import LazyLoad from '@/router/utils/LazyLoad'
 
 const { Header, Footer, Sider, Content } = AntdLayout
+
+export const Home: MyRouter.RouteMixedObject[] = [
+  {
+    path: 'home',
+    element: LazyLoad(React.lazy(() => import('@/views/Home/Home'))),
+  },
+]
 
 const Layout: React.FC = () => {
   const { pathname } = useLocation()
@@ -28,7 +36,7 @@ const Layout: React.FC = () => {
             style={{
               textAlign: 'center',
               color: 'rgb(110 109 109)',
-              padding: '12px 12px'
+              padding: '12px 12px',
             }}>
             Footer
           </Footer>

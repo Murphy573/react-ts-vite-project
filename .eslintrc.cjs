@@ -2,26 +2,36 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    node: true
+    node: true,
   },
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
-    'plugin:react/jsx-runtime'
+    'plugin:react/jsx-runtime',
   ],
-  overrides: [],
+  overrides: [
+    {
+      files: ['**/*.ts', '**/*.tsx'],
+      rules: {
+        'no-unused-vars': ['off'],
+        'no-undef': ['off'],
+        '@typescript-eslint/no-unused-vars': 'off',
+      },
+    },
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
-    sourceType: 'module'
+    sourceType: 'module',
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
-    'prettier/prettier': ['error', { singleQuote: true }],
+    '@typescript-eslint/no-empty-function': 'off',
+    'prettier/prettier': ['error', { singleQuote: true, trailingComma: 'es5' }],
     'arrow-body-style': 'off',
     'prefer-arrow-callback': 'off',
     'linebreak-style': ['error', 'unix'],
@@ -49,10 +59,11 @@ module.exports = {
         // args: 'after-used',
         args: 'none',
         ignoreRestSiblings: true,
-        caughtErrors: 'none'
-      }
+        caughtErrors: 'none',
+      },
     ],
-    'no-constant-condition': ['error', { checkLoops: false }]
+    'no-constant-condition': ['error', { checkLoops: false }],
+    'no-async-promise-executor': 'off',
   },
   /**
    * 解决打包时控制台警告：React version not specified in eslint-plugin-react settings
@@ -60,7 +71,7 @@ module.exports = {
    */
   settings: {
     react: {
-      version: 'detect'
-    }
-  }
+      version: 'detect',
+    },
+  },
 }

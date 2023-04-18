@@ -19,32 +19,32 @@ Object.keys(metaRouters).forEach((item) => {
 const routeConfig: MyRouter.RouteMixedObject[] = [
   {
     path: '/',
-    element: <Navigate to="/login" />
+    element: <Navigate to="/login" />,
   },
   {
     path: '/dashboard',
-    element: LazyLoad(lazy(() => import('@/views/Dashboard/Dashboard')))
+    element: LazyLoad(lazy(() => import('@/views/Dashboard/Dashboard'))),
   },
   {
     path: '/login',
-    element: LazyLoad(lazy(() => import('@/views/Login/Login')))
+    element: LazyLoad(lazy(() => import('@/views/Login/Login'))),
   },
   {
     path: '/404',
-    element: LazyLoad(lazy(() => import('@/views/404/404')))
+    element: LazyLoad(lazy(() => import('@/views/404/404'))),
   },
   {
     path: '/layout',
     element: <Layout />,
-    children: [...AllRouters]
+    children: [...AllRouters],
   },
   {
     path: '*',
     element: <Navigate to="/404" replace />,
     meta: {
-      isWhiteList: true
-    }
-  }
+      isWhiteList: true,
+    },
+  },
 ]
 
 export const RootRouter = createBrowserRouter(routeConfig, { basename: '/' })

@@ -17,9 +17,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "paths": {
-      "@/*": ["src/*"],
-      "*.ts": ["*"],
-      "*.tsx": ["*"]
+      "@/*": ["src/*"]
     }
   },
   "include": [
@@ -29,5 +27,5 @@
     "vite.config.ts",
     "built/**/*.ts"
   ],
-  "exclude": ["node_modules", "**/node_modules/*"]
+  "exclude": ["node_modules", "**/node_modules/*", "dist"]
 }

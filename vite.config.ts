@@ -45,7 +45,7 @@ export default defineConfig((configEnv: ConfigEnv) => {
 
     plugins: [
       react(),
-      ViteEslint({ failOnError: false }),
+      ViteEslint({ failOnError: false, failOnWarning: false }),
       VitePluginChecker({
         typescript: true,
         eslint: {

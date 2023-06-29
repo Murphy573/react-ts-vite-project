@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "run-s -l tscheck lint:js lint:style build:only",
     "preview": "vite preview",
-    "lint:js": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "lint:js": "eslint . --ext .js,.jsx,.ts,.tsx --fix --max-warnings=0",
     "lint:style": "stylelint \"./**/*.{css,less,vue,html}\" --fix --mw 0 --allow-empty-input",
     "format": "prettier --write \"./**/*.{html,js,ts,jsx,tsx,json,md}\"",
     "prepare": "husky install",
@@ -55,7 +55,11 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,vue}": [
-      "sh ./scripts/pre-commit.sh"
+      "eslint --fix --max-warnings=0",
+      "prettier --write"
+    ],
+    "*.{css,scss,less}": [
+      "stylelint --fix --mw 0 --allow-empty-input"
     ]
   }
 }

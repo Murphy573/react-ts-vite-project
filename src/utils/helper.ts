@@ -199,3 +199,32 @@ export function waitFor<T>(
     intervalId = window.setInterval(checkCallback, interval)
   })
 }
+
+/**
+ * 异步任务并发池
+ * @param tasks 异步任务列表
+ * @param limit 并发数
+ */
+export async function asyncPool<T>(
+  tasks: (() => Promise<T>)[],
+  limit = 1
+): Promise<T[]> {
+  const ret: Promise<T>[] = []
+
+  if (!tasks.length || limit < 1) {
+    return Promise.resolve().then(() => Promise.all(ret))
+  }
+
+  const executing = new Set()
+  for (const item of tasks) {
+    const p = Promise.resolve().then(() => item())
+    ret.push(p)
+    executing.add(p)
+    const clean = () => executing.delete(p)
+    p.then(clean).catch(clean)
+    if (executing.size >= limit) {
+      await Promise.race(executing)
+    }
+  }
+  return Promise.all(ret)
+}

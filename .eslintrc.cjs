@@ -36,7 +36,6 @@ module.exports = {
     'prefer-arrow-callback': 'off',
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
-    'no-console': 'error',
     'no-debugger': 'error',
     'handle-callback-err': 0,
     eqeqeq: ['error', 'smart'],
@@ -64,6 +63,7 @@ module.exports = {
     ],
     'no-constant-condition': ['error', { checkLoops: false }],
     'no-async-promise-executor': 'off',
+    'no-console': 'off',
   },
   /**
    * 解决打包时控制台警告：React version not specified in eslint-plugin-react settings

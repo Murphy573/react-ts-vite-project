@@ -71,7 +71,13 @@ export default defineConfig((configEnv: ConfigEnv) => {
       port: 4399,
       strictPort: true,
       open: true,
-      proxy: {},
+      proxy: {
+        '^/api/': {
+          target: 'http://localhost:3000',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api\//, ''),
+        },
+      },
     },
   }
 })

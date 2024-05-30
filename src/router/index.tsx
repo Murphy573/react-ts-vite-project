@@ -39,6 +39,10 @@ const routeConfig: MyRouter.RouteMixedObject[] = [
     children: [...AllRouters],
   },
   {
+    path: '/nest',
+    element: LazyLoad(lazy(() => import('@/views/Nest/Nest'))),
+  },
+  {
     path: '*',
     element: <Navigate to="/404" replace />,
     meta: {

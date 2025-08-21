@@ -283,3 +283,73 @@ export const isNodeOverflow = (ele: Element): boolean => {
   }
   return false
 }
+
+/**
+ * 重试的函数
+ */
+export type RetryFn<T = any> = () => Promise<T> | T
+
+/**
+ * 重试的配置项
+ */
+export interface RetryOptions<T = any> {
+  /** 最大重试次数 (默认 3 次)  */
+  maxRetries?: number
+  /** 重试延迟时间 ms (默认 500ms) */
+  delay?: number
+  /** 判断成功时是否要重试（默认不重试） */
+  shouldRetryOnSuccess?: (result: T) => boolean | Promise<boolean>
+  /** 判断失败时是否要重试 (默认所有错误都重试) */
+  shouldRetryOnError?: (error: any) => boolean | Promise<boolean>
+  /** 延迟策略：固定间隔 或者 根据重试次数动态调整，默认固定间隔 */
+  delayType?: 'fixed' | 'exponential'
+}
+/**
+ * 重试异步高阶函数
+ * @param fn 需要重试的异步函数，返回一个Promise，如果抛出错误，则重试，如果达到最大重试次数，则抛出最终错误。
+ * @param {RetryOptions} options 配置项，包括最大重试次数、重试延迟时间、判断是否要重试的函数、延迟策略。
+ * @returns 该异步函数的返回值的Promise
+ */
+export function withRetry<T>(
+  fn: RetryFn<T>,
+  options: RetryOptions<T> = {}
+): Promise<T> {
+  const {
+    maxRetries = 3,
+    delay = 500,
+    shouldRetryOnError = () => true,
+    shouldRetryOnSuccess = () => false,
+    delayType = 'fixed',
+  } = options
+
+  let retries = 0
+  let currentDelay = delay
+
+  const execute = async (): Promise<T> => {
+    try {
+      const res = await fn()
+
+      // 不再重试，直接返回结果
+      if (retries >= maxRetries || !(await shouldRetryOnSuccess(res))) {
+        return res
+      }
+      retries += 1
+      return execute()
+    } catch (error) {
+      // 不再重试，抛出最终错误
+      if (retries >= maxRetries || !(await shouldRetryOnError(error))) {
+        throw error
+      }
+
+      retries += 1
+
+      // 计算下一次延迟时间
+      currentDelay = delayType === 'exponential' ? currentDelay * 2 : delay
+
+      await sleep(currentDelay)
+      return execute() // 递归重试
+    }
+  }
+
+  return execute()
+}
